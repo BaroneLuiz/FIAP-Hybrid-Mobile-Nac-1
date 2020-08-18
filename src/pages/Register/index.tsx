@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -13,7 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
 
 const Register = () => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const [user, setUser] = useState({
     username: '',
@@ -23,11 +22,11 @@ const Register = () => {
   async function handleRegister() {
     try {
       const userdb = await AsyncStorage.getItem(user.username);
-      if (userdb) Alert.alert('Usuário já existe!');
+      if (userdb) alert('Usuário já existe!');
       else {
         await AsyncStorage.setItem(user.username, user.password);
-        Alert.alert('Usuário Criado!');
-        navigation.navigate('Login');
+        alert('Usuário Criado!');
+        navigate('Login');
       }
     } catch (error) {
       console.log('Erro no AsyncStorage ', error);
@@ -59,13 +58,6 @@ const Register = () => {
 
         <TouchableOpacity style={styles.botao} onPress={handleRegister}>
           <Text style={styles.text}>Cadastrar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.botao}
-          onPress={() => AsyncStorage.clear()}
-        >
-          <Text style={styles.text}>limpar cache</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
