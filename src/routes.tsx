@@ -11,7 +11,7 @@ import Home from './pages/Home';
 function Routes() {
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{}}>
+      <Navigator headerMode='none'>
         <Screen name='Login' component={Login} />
         <Screen name='Register' component={Register} />
         <Screen name='Home' component={Home} />
