@@ -3,9 +3,9 @@
 ## Exercício
 Desenvolva um aplicativo de login que permita o usuário se cadastrar e realizar o login usando o usuário cadastrado anteriormente.
 
-Regras:
--Se o usuário já existir, não deixar cadastrar novamente
--Ao logar, exibir uma tela informando que o usuário está em uma área restrita.
+Regras: \
+-Se o usuário já existir, não deixar cadastrar novamente \
+-Ao logar, exibir uma tela informando que o usuário está em uma área restrita. \
 -Permitir o usuário deslogar
 
 ## Built With
