@@ -6,7 +6,8 @@ import Routes from './src/routes';
 export default function App() {
   return (
     <>
-      <StatusBar style='auto' />
+      <h1>Teste home_page</h1>
+      <StatusBar style="auto" />
       <Routes />
     </>
   );
