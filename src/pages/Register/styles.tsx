@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 50,
     marginTop: '15%',
+    color: '#fff',
+    fontWeight: 'bold',
   },
 
   desc: {
@@ -29,9 +31,9 @@ const styles = StyleSheet.create({
 
   title: {
     marginTop: 25,
-    fontSize: 25,
+    fontSize: 22,
     alignSelf: 'baseline',
-    marginLeft: 35,
+    marginLeft: 55,
   },
 
   botao: {

@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from './styles';
 
 const Register = () => {
+  const navigation = useNavigation();
+
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+  });
+
+  async function handleRegister() {
+    try {
+      const userdb = await AsyncStorage.getItem(user.username);
+      if (userdb) Alert.alert('Usuário já existe!');
+      else {
+        await AsyncStorage.setItem(user.username, user.password);
+        Alert.alert('Usuário Criado!');
+        navigation.navigate('Login');
+      }
+    } catch (error) {
+      console.log('Erro no AsyncStorage ', error);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -20,17 +44,28 @@ const Register = () => {
 
         <Text style={styles.desc}>Faça o seu Cadastro</Text>
 
-        <Text style={styles.title}>Nome Completo</Text>
-        <TextInput style={styles.input} />
-
-        <Text style={styles.title}>Email</Text>
-        <TextInput style={styles.input} />
+        <Text style={styles.title}>Usuário do GitHub</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => setUser({ ...user, username: value })}
+        />
 
         <Text style={styles.title}>Senha</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          onChangeText={(value) => setUser({ ...user, password: value })}
+        />
 
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity style={styles.botao} onPress={handleRegister}>
           <Text style={styles.text}>Cadastrar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.botao}
+          onPress={() => AsyncStorage.clear()}
+        >
+          <Text style={styles.text}>limpar cache</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
