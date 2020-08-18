@@ -27,6 +27,9 @@ const Login = () => {
         placeholder='Digite seu login'
         onChangeText={(value) => setUser({ ...user, username: value })}
       />
+      <TouchableOpacity style={styles.botao} onPress={() => {}}>
+        <Text style={styles.botaotext}>Login</Text>
+      </TouchableOpacity>
 
       <TextInput
         style={styles.campos}
